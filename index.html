@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-commerce</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="menu container">
+            <a href="#" class="logo">Logo</a>
+            <input type="checkbox" id="menu">
+            <label for="menu"><img src="./images/menu.png" class="menu-icon" alt="menu icon"></label>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#list-1">Promociones</a></li>
+                    <li><a href="#list-2">Nuevos Productos</a></li>
+                    <li><a href="#list-3">Productos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div>
+                <ul>
+                    <li class="submenu">
+                        <img src="images/car.svg" id="img-cart" alt="cart icon">
+                        <div id="cart">
+                            <table id="cart-list">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Precio</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <a href="#" id="clean-cart" class="btn-3">Vaciar Carrito</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="header-content container">
+            <div class="swiper mySwiper-1">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="header-info">
+                            <div class="header-txt">
+                                <h1>Audifonos Premium - Version 1</h1>
+                                <div class="prices">
+                                    <p class="price-1">$299.000</p>
+                                    <p class="price-2">$199.000</p>
+                                </div>
+                                <a href="#" class="btn-1">Información</a>
+                            </div>
+                            <div class="header-img">
+                                <img src="images/bg1.png" alt="black headphones">
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="header-info">
+                            <div class="header-txt">
+                                <h1>Audifonos Premium - Version 2</h1>
+                                <div class="prices">
+                                    <p class="price-1">$299.000</p>
+                                    <p class="price-2">$199.000</p>
+                                </div>
+                                <a href="#" class="btn-1">Información</a>
+                            </div>
+                            <div class="header-img">
+                                <img src="images/bg2.png" alt="blue headphones">
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="header-info">
+                            <div class="header-txt">
+                                <h1>Audifonos Premium - Version 3</h1>
+                                <div class="prices">
+                                    <p class="price-1">$299.000</p>
+                                    <p class="price-2">$199.000</p>
+                                </div>
+                                <a href="#" class="btn-1">Información</a>
+                            </div>
+                            <div class="header-img">
+                                <img src="images/eb4.png" alt="gold headphones">
+                            </div>
+                        </div>                        
+                    </div>                    
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </header>
+    <hr>
+    <section class="promos container" id="list-1">
+        <h2>Promociones</h2>
+        <div class="categories">
+            <div class="categorie">
+                <div class="categorie-1">
+                    <h3>Promoción 1</h3>
+                    <div class="prices">
+                        <p class="price-1">$199.000</p>
+                        <p class="price-2">$150.000</p>
+                    </div>
+                    <a href="#" class="add-cart btn-3" data-id="1">Agregar al carrito</a>
+                </div>
+                <div class="categorie-img">
+                    <img src="images/ph1.png" alt="grey earbuds">
+                </div>
+            </div>
+            <div class="categorie">
+                <div class="categorie-1">
+                    <h3>Promoción 2</h3>
+                    <div class="prices">
+                        <p class="price-1">$199.000</p>
+                        <p class="price-2">$150.000</p>
+                    </div>
+                    <a href="#" class="add-cart btn-3" data-id="2">Agregar al carrito</a>
+                </div>
+                <div class="categorie-img">
+                    <img src="images/ph2.png" alt="black earbuds">
+                </div>
+            </div>
+            <div class="categorie">
+                <div class="categorie-1">
+                    <h3>Promoción 3</h3>
+                    <div class="prices">
+                        <p class="price-1">$199.000</p>
+                        <p class="price-2">$150.000</p>
+                    </div>
+                    <a href="#" class="add-cart btn-3" data-id="3">Agregar al carrito</a>
+                </div>
+                <div class="categorie-img">
+                    <img src="images/ph3.png" alt="blue earbuds">
+                </div>
+            </div>
+            <div class="categorie">
+                <div class="categorie-1">
+                    <h3>Promoción 4</h3>
+                    <div class="prices">
+                        <p class="price-1">$199.000</p>
+                        <p class="price-2">$150.000</p>
+                    </div>
+                    <a href="#" class="add-cart btn-3" data-id="4">Agregar al carrito</a>
+                </div>
+                <div class="categorie-img">
+                    <img src="images/ph4.png" alt="red earbuds">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section class="products container" id="list-2">
+        <h2>Nuevos Productos</h2>
+        <div class="swiper mySwiper-2">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="product">
+                        <img src="images/eb1.png" alt="black earbuds">
+                        <div class="product-txt">
+                            <h3>Elisyum</h3>
+                            <p>Calidad premium</p>
+                            <p class="price">$250.000</p>
+                            <a href="#" class="add-cart btn-3" data-id="5">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="product">
+                        <img src="images/eb2.png" alt="orange and blue earbuds">
+                        <div class="product-txt">
+                            <h3>Luxora</h3>
+                            <p>Calidad premium</p>
+                            <p class="price">$250.000</p>
+                            <a href="#" class="add-cart btn-3" data-id="6">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="product">
+                        <img src="images/eb3.png" alt="black and yellow earbuds">
+                        <div class="product-txt">
+                            <h3>Veloria</h3>
+                            <p>Calidad premium</p>
+                            <p class="price">$250.000</p>
+                            <a href="#" class="add-cart btn-3" data-id="7">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="product">
+                        <img src="images/eb5.png" alt="silver headphones">
+                        <div class="product-txt">
+                            <h3>Aetheris</h3>
+                            <p>Calidad premium</p>
+                            <p class="price">$250.000</p>
+                            <a href="#" class="add-cart btn-3" data-id="8">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+    <hr>
+    <section class="products container" id="list-3">
+        <h2>Productos</h2>
+        <div class="swiper mySwiper-2">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="product">
+                        <img src="images/ph1.png" alt="">
+                        <div class="product-txt">
+                            <h3>Elisyum</h3>
+                            <p>Calidad premium</p>
+                            <p class="price">$200</p>
+                            <a href="#" class="add-cart btn-3" data-id="9">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="product">
+                        <img src="images/ph2.png" alt="">
+                        <div class="product-txt">
+                            <h3>Elisyum</h3>
+                            <p>Calidad premium</p>
+                            <p class="price">$200</p>
+                            <a href="#" class="add-cart btn-3" data-id="10">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="product">
+                        <img src="images/ph3.png" alt="">
+                        <div class="product-txt">
+                            <h3>Elisyum</h3>
+                            <p>Calidad premium</p>
+                            <p class="price">$200</p>
+                            <a href="#" class="add-cart btn-3" data-id="11">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="product">
+                        <img src="images/ph4.png" alt="">
+                        <div class="product-txt">
+                            <h3>Elisyum</h3>
+                            <p>Calidad premium</p>
+                            <p class="price">$200</p>
+                            <a href="#" class="add-cart btn-3" data-id="12">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <footer class="footer container" id="contacto">
+        <div class="link">
+            <h3>Contacto</h3>
+            <ul>
+                <li>
+                    <a href="https://www.instagram.com/jotaka92/" target="_blank">
+                        <img class="social-img" src="images/instagram.png" alt="instagram logo">
+                        Instagram
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/johncollazos/" target="_blank">
+                        <img class="social-img" src="images/linkedin.png" alt="linkedin logo">
+                        LinkdIn
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/jotaka92" target="_blank">
+                        <img class="social-img" src="images/github.png" alt="github logo">
+                        LinkdIn
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="link">
+            <p>Coded by John Collazos</p>
+            
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
