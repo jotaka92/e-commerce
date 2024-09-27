@@ -40,7 +40,6 @@ var swiper2 = new Swiper(".mySwiper-2", {
 const cart = document.getElementById('cart');
 const elements1 = document.getElementById('list-1');
 const elements2 = document.getElementById('list-2');
-const elements3 = document.getElementById('list-3');
 const list = document.querySelector('#cart-list tbody');
 const cleanCartBtn = document.getElementById('clean-cart');
 
@@ -49,7 +48,6 @@ loadEventListeners();
 function loadEventListeners() {
     elements1.addEventListener('click', buyElement);
     elements2.addEventListener('click', buyElement);
-    elements3.addEventListener('click', buyElement);
     cart.addEventListener('click', removeElement);
     cleanCartBtn.addEventListener('click', cleanCart);
 }
@@ -85,7 +83,7 @@ function insertCart(element) {
             ${element.price}
         </td>
         <td>
-            <a href="#" class="delete" data-id="${element.id}">Eliminar</a>
+            <a href="#" class="delete" data-id="${element.id}">X</a>
         </td>
     `;
     list.appendChild(row);
