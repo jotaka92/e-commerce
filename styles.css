@@ -26,7 +26,7 @@ body {
 }
 
 .swiper-slide {
-    padding: 0 80px 50px 80px;
+    padding: 0 10% 50px 10%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,8 +67,8 @@ body {
     align-items: center;
     justify-content: space-between;
     z-index: 1000;
+    padding: 0 10px;
 }
-
 
 .logo {
     font-size: 25px;
@@ -174,8 +174,10 @@ th, td {
     text-align: right;
 }
 
-.header-img img {
-    width: 500px;
+.header-img img, .product img {
+    width: 100%;
+    max-width: 500px;
+    min-width: 150px;
 }
 
 .prices {
@@ -276,10 +278,10 @@ hr {
     text-align: center;
 }
 
-.product img {
+/* .product img {
     width: 150px;
     margin-bottom: 15px;
-}
+} */
 
 .product-txt h3 {
     color: #feffff;
@@ -419,6 +421,7 @@ hr {
 
     .header-txt {
         width: 100%;
+        max-width: 500px;
     }
 
     .header-txt h1 {
@@ -427,6 +430,7 @@ hr {
 
     .header-img {
         width: 100%;
+        max-width: 500px;
     }
 
     .header-img img {
@@ -462,6 +466,7 @@ hr {
         flex-direction: column;
         text-align: center;
         padding: 20px;
+        width: 100%;        
     }
 
     .categorie-1 {
