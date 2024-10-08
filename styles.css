@@ -198,7 +198,9 @@ hr {
     padding: 35px;
 }
 .categorie img {
-    width: 150px;
+    width: 100%;
+    max-width: 200px;
+    min-width: 100px;
 }
 .categorie-1 {
     width: 50%;
@@ -212,9 +214,6 @@ hr {
     color: #747b8f;
     font-size: 18px;
 }
-.categorie-img {
-    width: 50%;
-}
 .products {
     padding: 50px 0;
 }
@@ -225,6 +224,11 @@ hr {
 }
 .product {
     text-align: center;
+}
+.product img {
+    width: 100%;
+    max-width: 3000px;
+    min-width: 150px;
 }
 .product-txt h3 {
     color: #feffff;
@@ -283,7 +287,7 @@ hr {
     color: #7072ec;
 }
 .social-img {
-    width: 25px;
+    width: 15%;
     margin-right: 10px;
 }
 .link p {
@@ -380,9 +384,6 @@ hr {
         width: 100%;
         margin-bottom: 25px;
         order: -1;
-    }
-    .categorie-img {
-        width: 100%;
     }
     .products {
         padding: 30px;
