@@ -12,15 +12,13 @@ var swiper1 = new Swiper(".mySwiper-1", {
     
     }
 });
-
 var swiper2 = new Swiper(".mySwiper-2", {
     slidesPerView: 1,
     spaceBetween: 30,
     loop: true,    
     navigation: {
         nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    
+        prevEl: ".swiper-button-prev",    
     },
     breakpoints: {
         0: {
@@ -34,24 +32,19 @@ var swiper2 = new Swiper(".mySwiper-2", {
         },
     },
 });
-
 //cart
-
 const cart = document.getElementById('cart');
 const elements1 = document.getElementById('list-1');
 const elements2 = document.getElementById('list-2');
 const list = document.querySelector('#cart-list tbody');
 const cleanCartBtn = document.getElementById('clean-cart');
-
 loadEventListeners();
-
 function loadEventListeners() {
     elements1.addEventListener('click', buyElement);
     elements2.addEventListener('click', buyElement);
     cart.addEventListener('click', removeElement);
     cleanCartBtn.addEventListener('click', cleanCart);
 }
-
 function buyElement(e) {
     e.preventDefault();
     if(e.target.classList.contains('add-cart')) {
@@ -59,7 +52,6 @@ function buyElement(e) {
         readElement(element);
     }
 }
-
 function readElement(element) {
     const infoElement = {
         image: element.querySelector('img').src,
@@ -69,7 +61,6 @@ function readElement(element) {
     }
     insertCart(infoElement);
 }
-
 function insertCart(element) {
     const row = document.createElement('tr');
     row.innerHTML = `
@@ -88,7 +79,6 @@ function insertCart(element) {
     `;
     list.appendChild(row);
 }
-
 function removeElement(e) {
     e.preventDefault();
     let element, elementId;
@@ -98,7 +88,6 @@ function removeElement(e) {
         elementId = element.querySelector('a').getAttribute('data-id');
     }
 }
-
 function cleanCart() {
     while(list.firstChild) {
         list.removeChild(list.firstChild);
