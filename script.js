@@ -9,7 +9,6 @@ var swiper1 = new Swiper(".mySwiper-1", {
     navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
-    
     }
 });
 var swiper2 = new Swiper(".mySwiper-2", {
@@ -94,3 +93,11 @@ function cleanCart() {
     }
     return false;
 }
+module.exports = {
+    loadEventListeners,
+    addToCart,
+    readElement,
+    insertCart,
+    removeElement,
+    cleanCart
+};
