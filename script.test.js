@@ -1,7 +1,6 @@
 const { JSDOM } = require('jsdom');
 const fs = require('fs');
 const path = require('path');
-
 // Mock Swiper
 global.Swiper = jest.fn().mockImplementation(() => {
     return {
@@ -10,27 +9,22 @@ global.Swiper = jest.fn().mockImplementation(() => {
         slidePrev: jest.fn(),
     };
 });
-
 const html = fs.readFileSync(path.resolve(__dirname, './index.html'), 'utf8');
 let dom;
 let document;
-
 beforeEach(() => {
     dom = new JSDOM(html, { runScripts: "dangerously" });
     document = dom.window.document;
     global.document = document;
     global.window = dom.window;
-
     // Clear the cart list before each test
     const cartList = document.getElementById('cart-list');
     while (cartList.firstChild) {
         cartList.removeChild(cartList.firstChild);
     }
-
     // Populate the cart with an item
     const cartItem = document.createElement('tr');
     cartList.appendChild(cartItem);
-
     // Add the cleanCartBtn click event listener
     const cleanCartBtn = document.getElementById('clean-cart');
     cleanCartBtn.addEventListener('click', () => {
@@ -39,15 +33,12 @@ beforeEach(() => {
         }
     });
 });
-
 test('cleanCartBtn click should empty the cart', () => {
     const cleanCartBtn = document.getElementById('clean-cart');
     cleanCartBtn.click();
-
     const cartItems = document.querySelectorAll('#cart-list tr');
     expect(cartItems.length).toBe(0);
 });
-
 // Mock insertCart function
 const insertCart = jest.fn((element) => {
     const row = document.createElement('tr');
@@ -67,7 +58,6 @@ const insertCart = jest.fn((element) => {
     `;
     document.getElementById('cart-list').appendChild(row);
 });
-
 // Mock readElement function
 const readElement = jest.fn((element) => {
     const infoElement = {
@@ -78,7 +68,6 @@ const readElement = jest.fn((element) => {
     }
     insertCart(infoElement);
 });
-
 function buyElement(e) {
     e.preventDefault();
     if(e.target.classList.contains('add-cart')) {
@@ -86,7 +75,6 @@ function buyElement(e) {
         readElement(element);
     }
 }
-
 function removeElement(e) {
     e.preventDefault();
     let element, elementId;
@@ -96,7 +84,6 @@ function removeElement(e) {
         elementId = element.querySelector('a').getAttribute('data-id');
     }
 }
-
 function cleanCart() {
     const list = document.getElementById('cart-list');
     while(list.firstChild) {
@@ -104,7 +91,6 @@ function cleanCart() {
     }
     return false;
 }
-
 test('buyElement should call readElement with the correct element', () => {
     // Create a mock element structure
     const parentElement = document.createElement('div');
@@ -113,7 +99,6 @@ test('buyElement should call readElement with the correct element', () => {
     button.classList.add('add-cart');
     childElement.appendChild(button);
     parentElement.appendChild(childElement);
-
     // Add necessary elements for readElement
     const img = document.createElement('img');
     img.src = 'image.jpg';
@@ -124,27 +109,21 @@ test('buyElement should call readElement with the correct element', () => {
     price.textContent = '$10';
     const link = document.createElement('a');
     link.setAttribute('data-id', '123');
-
     parentElement.appendChild(img);
     parentElement.appendChild(title);
     parentElement.appendChild(price);
     parentElement.appendChild(link);
-
     document.body.appendChild(parentElement);
-
     // Create a mock event
     const event = new window.Event('click', { bubbles: true, cancelable: true });
     event.preventDefault = jest.fn();
     Object.defineProperty(event, 'target', { value: button, enumerable: true });
-
     // Call buyElement with the mock event
     buyElement(event);
-
     // Verify that readElement was called with the correct element
     expect(readElement).toHaveBeenCalledWith(parentElement);
     expect(event.preventDefault).toHaveBeenCalled();
 });
-
 test('readElement should call insertCart with the correct infoElement', () => {
     // Create a mock element structure
     const element = document.createElement('div');
@@ -155,10 +134,8 @@ test('readElement should call insertCart with the correct infoElement', () => {
         <a data-id="123"></a>
     `;
     document.body.appendChild(element);
-
     // Call readElement with the mock element
     readElement(element);
-
     // Verify that insertCart was called with the correct infoElement
     expect(insertCart).toHaveBeenCalledWith({
         image: 'image.jpg',
@@ -167,7 +144,6 @@ test('readElement should call insertCart with the correct infoElement', () => {
         id: '123'
     });
 });
-
 test('insertCart should add a row to the cart list', () => {
     const element = {
         image: 'image.jpg',
@@ -175,9 +151,7 @@ test('insertCart should add a row to the cart list', () => {
         price: '$10',
         id: '123'
     };
-
     insertCart(element);
-
     const cartList = document.getElementById('cart-list');
     const rows = cartList.getElementsByTagName('tr');
     expect(rows.length).toBe(2); // One initial row from beforeEach and one added by insertCart
@@ -187,7 +161,6 @@ test('insertCart should add a row to the cart list', () => {
     expect(lastRow.querySelector('td:nth-child(3)').textContent.trim()).toBe('$10');
     expect(lastRow.querySelector('a.delete').getAttribute('data-id')).toBe('123');
 });
-
 test('removeElement should remove the correct row from the cart list', () => {
     // Add a row to the cart list
     const element = {
@@ -197,25 +170,20 @@ test('removeElement should remove the correct row from the cart list', () => {
         id: '123'
     };
     insertCart(element);
-
     const cartList = document.getElementById('cart-list');
     const rows = cartList.getElementsByTagName('tr');
     expect(rows.length).toBe(2); // One initial row from beforeEach and one added by insertCart
-
     // Create a mock event for removing the row
     const deleteButton = rows[1].querySelector('a.delete');
     const event = new window.Event('click', { bubbles: true, cancelable: true });
     event.preventDefault = jest.fn();
     Object.defineProperty(event, 'target', { value: deleteButton, enumerable: true });
-
     // Call removeElement with the mock event
     removeElement(event);
-
     // Verify that the row was removed
     expect(rows.length).toBe(1); // Only the initial row should remain
     expect(event.preventDefault).toHaveBeenCalled();
 });
-
 test('cleanCart should empty the cart list', () => {
     // Add a row to the cart list
     const element = {
@@ -225,14 +193,11 @@ test('cleanCart should empty the cart list', () => {
         id: '123'
     };
     insertCart(element);
-
     const cartList = document.getElementById('cart-list');
     const rows = cartList.getElementsByTagName('tr');
     expect(rows.length).toBe(2); // One initial row from beforeEach and one added by insertCart
-
     // Call cleanCart
     cleanCart();
-
     // Verify that the cart list is empty
     expect(cartList.children.length).toBe(0);
 });
