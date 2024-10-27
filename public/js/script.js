@@ -95,7 +95,6 @@ function cleanCart() {
 }
 module.exports = {
     loadEventListeners,
-    addToCart,
     readElement,
     insertCart,
     removeElement,
