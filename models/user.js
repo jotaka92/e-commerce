@@ -1,4 +1,4 @@
-import {db} from '/database/db.js';
+import { db } from '../database/connection.js';
 
 const create = async({username, email, password}) => {
     // evitar sql injections
@@ -12,7 +12,7 @@ const create = async({username, email, password}) => {
     }
 
     const {rows} = await db.query(query);
-    return rows;
+    return rows[0];
 }
 
 const findOneByEmail = async(email) => {
