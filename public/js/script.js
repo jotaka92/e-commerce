@@ -139,6 +139,30 @@ async function buyCart() {
         alert('Error al realizar la compra.');
     }
 }
+// Función para manejar el inicio de sesión
+async function loginUser(email, password) {
+    try {
+        const response = await axios.post('/login', { email, password });
+        console.log('Login successful:', response.data.msg);
+        // Aquí puedes redirigir al usuario o almacenar el token
+    } catch (error) {
+        if (error.response) {
+            alert(error.response.data.error || 'Something went wrong');
+        } else if (error.request) {
+            alert('No response from the server');
+        } else {
+            alert('Error: ' + error.message);
+        }
+    }
+}
+
+// Maneja el envío del formulario
+document.querySelector('#loginForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    loginUser(email, password);
+});
 module.exports = {
     loadEventListeners,
     readElement,
