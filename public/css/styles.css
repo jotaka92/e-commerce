@@ -252,8 +252,19 @@ hr {
     border-radius: 25px;
     margin-top: 15px;
 }
-.btn-3:hover {
+.btn-3:hover, .buy-cart:hover {
     background-color: #7270ec;
+}
+.buy-cart {
+    display: inline-block;
+    background: none;
+    padding: 10px 45px;
+    font-size: 14px;
+    color: #feffff;
+    border: 1px solid #7270ec;
+    border-radius: 25px;
+    margin-top: 15px;
+    cursor: pointer;
 }
 .footer {
     display: flex;
