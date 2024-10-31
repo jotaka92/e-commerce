@@ -39,7 +39,7 @@
             try {
                 const {data} = await axios.post('/api/v1/users/login', {email, password});
                 localStorage.setItem('token', data.msg);
-                window.location.href = 'index.html';
+                window.location.href = '../index.html';
             } catch (error) {
                 console.error(error);
             }

@@ -37,12 +37,15 @@ const elements1 = document.getElementById('list-1');
 const elements2 = document.getElementById('list-2');
 const list = document.querySelector('#cart-list tbody');
 const cleanCartBtn = document.getElementById('clean-cart');
+const buyCartBtn = document.getElementById('buy-cart');
 loadEventListeners();
 function loadEventListeners() {
     elements1.addEventListener('click', buyElement);
     elements2.addEventListener('click', buyElement);
     cart.addEventListener('click', removeElement);
     cleanCartBtn.addEventListener('click', cleanCart);
+    buyCartBtn.addEventListener('click', buyCart);
+
 }
 function buyElement(e) {
     e.preventDefault();
@@ -55,29 +58,44 @@ function readElement(element) {
     const infoElement = {
         image: element.querySelector('img').src,
         title: element.querySelector('h3').textContent,
-        price: element.querySelector('.price, .price-2').textContent,
+        price: parseFloat(element.querySelector('.price, .price-2').textContent.replace('$', '').trim()), // Asegúrate de convertir a número
         id: element.querySelector('a').getAttribute('data-id')
     }
     insertCart(infoElement);
 }
+
 function insertCart(element) {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-        <td>
-            <img src="${element.image}" width=100>
-        </td>
-        <td>
-            ${element.title}
-        </td>
-        <td>
-            ${element.price}
-        </td>
-        <td>
-            <a href="#" class="delete" data-id="${element.id}">X</a>
-        </td>
-    `;
-    list.appendChild(row);
+    // Verifica si el producto ya está en el carrito
+    const existingRow = Array.from(list.rows).find(row => row.querySelector('a').getAttribute('data-id') === element.id);
+    
+    if (existingRow) {
+        // Si ya existe, aumenta la cantidad
+        const quantityCell = existingRow.querySelector('.quantity');
+        quantityCell.textContent = parseInt(quantityCell.textContent) + 1; // Incrementa la cantidad
+    } else {
+        // Si no existe, lo agrega al carrito
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>
+                <img src="${element.image}" width=100>
+            </td>
+            <td>
+                ${element.title}
+            </td>
+            <td>
+                $<span class="price">${element.price.toFixed(2)}</span>
+            </td>
+            <td class="quantity">
+                1
+            </td>
+            <td>
+                <a href="#" class="delete" data-id="${element.id}">X</a>
+            </td>
+        `;
+        list.appendChild(row);
+    }
 }
+
 function removeElement(e) {
     e.preventDefault();
     let element, elementId;
@@ -93,10 +111,39 @@ function cleanCart() {
     }
     return false;
 }
+async function buyCart() {
+    const items = Array.from(list.rows).map(row => ({
+        productId: row.querySelector('a').getAttribute('data-id'),
+        quantity: parseInt(row.querySelector('.quantity').textContent)
+    }));
+
+    try {
+        const response = await fetch('/api/v1/orders/buy', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ items })
+        });
+
+        if (!response.ok) {
+            throw new Error('Error en la compra');
+        }
+
+        const result = await response.json();
+        console.log(result);
+        alert('Compra exitosa!');
+        cleanCart(); // Limpia el carrito después de la compra
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error al realizar la compra.');
+    }
+}
 module.exports = {
     loadEventListeners,
     readElement,
     insertCart,
     removeElement,
-    cleanCart
+    cleanCart,
+    buyCart
 };
