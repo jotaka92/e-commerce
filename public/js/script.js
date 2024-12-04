@@ -155,7 +155,6 @@ async function loginUser(email, password) {
         }
     }
 }
-
 // Maneja el envío del formulario
 document.querySelector('#loginForm').addEventListener('submit', (event) => {
     event.preventDefault();
