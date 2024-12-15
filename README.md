@@ -1,67 +1,79 @@
+Proyecto E-commerce
+
 Descripción
-Este proyecto configura un servidor local utilizando Node.js y PostgreSQL. Incluye instrucciones para la instalación, configuración y ejecución del servidor.
+
+Este proyecto es una plataforma de e-commerce para la venta de accesorios para celulares. 
+Los usuarios pueden registrarse, iniciar sesión, navegar por los productos, agregar productos 
+al carrito y realizar compras. El proyecto utiliza Node.js, Express y PostgreSQL en el backend, y HTML, 
+CSS y JavaScript en el frontend.
+
+Características
+
+Registro e inicio de sesión de usuarios
+Navegación de productos
+Agregar productos al carrito de compras
+Realizar compras
+Reducción automática de la cantidad de productos en la base de datos tras una compra
+Mensajes de alerta cuando un usuario no existe o la cantidad de producto es insuficiente
 
 Requisitos
-Node.js (versión 14 o superior)
-PostgreSQL (versión 12 o superior)
-npm (versión 6 o superior)
-Git
+Node.js (v14 o superior)
+PostgreSQL
+
 Instalación
-1. Clonar el repositorio
-Primero, clona este repositorio en tu máquina local:
 
-bash
-Copiar código
-git clone https://github.com/tu-usuario/tu-repositorio.git
-cd tu-repositorio
-2. Instalar dependencias
-Instala las dependencias necesarias utilizando npm:
+Clona el repositorio:
+git clone https://github.com/tu_usuario/e-commerce.git
+cd e-commerce
 
-bash
-Copiar código
+Instala las dependencias:
 npm install
-3. Configurar la base de datos PostgreSQL
-3.1. Crear la base de datos
-Accede a tu terminal de PostgreSQL y crea una nueva base de datos:
 
-sql
-Copiar código
-CREATE DATABASE nombre_de_tu_base_de_datos;
-3.2. Configurar el usuario y los permisos
-Crea un usuario y otórgale permisos sobre la base de datos:
+Configura las variables de entorno:
+Crea un archivo .env en la raíz del proyecto con el siguiente contenido:
+DATABASE_URL=tu_database_url
 
-sql
-Copiar código
-CREATE USER tu_usuario WITH PASSWORD 'tu_contraseña';
-GRANT ALL PRIVILEGES ON DATABASE nombre_de_tu_base_de_datos TO tu_usuario;
-3.3. Ejecutar las migraciones (si tienes)
-Si tu proyecto incluye migraciones para crear tablas y esquemas, ejecuta las migraciones ahora:
+Configura la base de datos:
+Conecta a tu base de datos PostgreSQL y ejecuta el contenido del archivo schema.sql para 
+crear las tablas necesarias:
 
-bash
-Copiar código
-npm run migrate
-4. Configurar las variables de entorno
-Crea un archivo .env en la raíz del proyecto y agrega las siguientes variables de entorno:
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
 
-plaintext
-Copiar código
-DB_HOST=localhost
-DB_USER=tu_usuario
-DB_PASSWORD=tu_contraseña
-DB_NAME=nombre_de_tu_base_de_datos
-DB_PORT=5432
-PORT=3000
-Asegúrate de reemplazar tu_usuario, tu_contraseña, y nombre_de_tu_base_de_datos con los valores adecuados.
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    quantity INT NOT NULL
+);
 
-5. Iniciar el servidor
-Finalmente, inicia el servidor ejecutando:
-
-bash
-Copiar código
+Inicia el servidor:
 npm start
-El servidor debería estar corriendo en http://localhost:3000.
 
-Scripts
-npm start: Inicia el servidor en modo de producción.
-npm run dev: Inicia el servidor en modo de desarrollo con nodemon.
-npm run migrate: Ejecuta las migraciones de la base de datos (si aplica).
+Accede a la aplicación en tu navegador:
+http://localhost:3000
+Despliegue en Vercel
+
+Instala Vercel CLI (si no lo tienes ya instalado):
+npm install -g vercel
+
+Inicia sesión en Vercel:
+vercel login
+
+Despliega el proyecto:
+vercel
+
+Configura las variables de entorno en Vercel:
+Ve a tu panel de control en Vercel.
+Selecciona tu proyecto.
+Ve a la sección de "Environment Variables".
+Añade DATABASE_URL con la URL de tu base de datos PostgreSQL.
+
+Uso
+Navegación de productos: Los usuarios pueden ver los productos disponibles en la página principal.
+Agregar al carrito: Los usuarios pueden agregar productos al carrito.
+Realizar compra: Los usuarios pueden hacer clic en el botón "Buy" para realizar la compra y reducir 
+la cantidad de productos en la base de datos.
